@@ -15,6 +15,6 @@ public class SearchProductionRepository implements SearchRepository {
     @Override public Single<List<Movie>> search(String search) {
         return new SearchApi().getService()
                 .search(search, BuildConfig.API_KEY)
-                .flatMap(response -> Single.create(emmiter -> new SearchResponseGod(emmiter, response).handle(response.code())));
+                .flatMap(response -> Single.create(emitter -> new SearchResponseGod(emitter, response).handle(response.code())));
     }
 }
