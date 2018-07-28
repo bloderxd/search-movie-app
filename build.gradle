@@ -11,6 +11,7 @@ buildscript {
         retrofit2='2.4.0'
         gson='2.8.3'
         okhttp3='3.9.1'
+        mockito='2.10.0'
     }
 
     repositories {
