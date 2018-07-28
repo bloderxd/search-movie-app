@@ -2,6 +2,8 @@ package movie.bloder.repository.payloads;
 
 import com.google.gson.annotations.SerializedName;
 
+import movie.bloder.repository.models.Movie;
+
 public class MoviePayload {
 
     @SerializedName("imdbID") private final String id;
@@ -16,5 +18,13 @@ public class MoviePayload {
         this.year = year;
         this.type = type;
         this.image = image;
+    }
+
+    Movie toModel() {
+        return new Movie(id, title, year, image);
+    }
+
+    Boolean isMovie() {
+        return type.equals("movie");
     }
 }

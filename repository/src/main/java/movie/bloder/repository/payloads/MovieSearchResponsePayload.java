@@ -2,8 +2,10 @@ package movie.bloder.repository.payloads;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import movie.bloder.repository.models.Movie;
 
 public class MovieSearchResponsePayload {
 
@@ -15,5 +17,10 @@ public class MovieSearchResponsePayload {
         this.total = total;
     }
 
-    public List<String> toModel() { return new ArrayList<>(); }
+    public List<Movie> toModel() {
+        return searchResult.stream()
+                .filter(movie -> movie.isMovie())
+                .map(MoviePayload::toModel)
+                .collect(Collectors.toList());
+    }
 }
