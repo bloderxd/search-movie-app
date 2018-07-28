@@ -1,4 +1,4 @@
-package movie.bloder.repository;
+package movie.bloder.repository.api;
 
 
 import com.google.gson.GsonBuilder;
@@ -11,7 +11,7 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class Api {
+abstract public class Api<T> {
 
     protected Retrofit getRetrofit() {
         return new Retrofit.Builder()
@@ -31,4 +31,6 @@ public class Api {
                 .readTimeout(30, TimeUnit.SECONDS)
                 .build();
     }
+
+    public abstract T getService();
 }
