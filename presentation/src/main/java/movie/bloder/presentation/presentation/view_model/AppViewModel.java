@@ -1,0 +1,16 @@
+package movie.bloder.presentation.presentation.view_model;
+
+import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.ViewModel;
+
+import movie.bloder.presentation.presentation.state.State;
+
+abstract public class AppViewModel<T extends State> extends ViewModel {
+
+    private MutableLiveData<T> liveData = new MutableLiveData<>();
+
+    protected AppViewModel<T> postState(T state) {
+        liveData.postValue(state);
+        return this;
+    }
+}

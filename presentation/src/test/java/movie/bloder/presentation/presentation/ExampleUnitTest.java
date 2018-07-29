@@ -1,4 +1,4 @@
-package example.redux.bloder.presentation;
+package movie.bloder.presentation.presentation;
 
 import org.junit.Test;
 

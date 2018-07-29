@@ -1,6 +1,5 @@
 package movie.bloder.domain.binding;
 
-
 import io.reactivex.Single;
 import io.reactivex.functions.Function;
 import io.reactivex.observers.DisposableSingleObserver;

@@ -12,6 +12,7 @@ buildscript {
         gson='2.8.3'
         okhttp3='3.9.1'
         mockito='2.10.0'
+        life_cycle_version='1.1.1'
     }
 
     repositories {

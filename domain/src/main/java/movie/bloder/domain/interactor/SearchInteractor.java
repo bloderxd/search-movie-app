@@ -1,6 +1,5 @@
 package movie.bloder.domain.interactor;
 
-
 import java.util.List;
 
 import movie.bloder.domain.SingleUseCase;

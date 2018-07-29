@@ -1,4 +1,4 @@
-package example.redux.bloder.presentation;
+package movie.bloder.presentation.presentation;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("example.redux.bloder.presentation.test", appContext.getPackageName());
+        assertEquals("movie.bloder.presentation.presentation.test", appContext.getPackageName());
     }
 }
