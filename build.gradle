@@ -7,7 +7,7 @@ buildscript {
         rx_android='2.0.2'
         assertj_version='3.8.0'
         junit='4.12'
-        archTestVersion='1.1.1'
+        arch_test_version='1.1.1'
         retrofit2='2.4.0'
         gson='2.8.3'
         okhttp3='3.9.1'

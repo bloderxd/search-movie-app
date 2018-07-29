@@ -4,7 +4,7 @@ package movie.bloder.domain.binding;
 import io.reactivex.disposables.Disposable;
 import movie.bloder.domain.UseCase;
 
-abstract class UseCaseBinding {
+abstract class UseCaseBinding<T> {
 
     private final UseCase useCase;
 
@@ -16,5 +16,5 @@ abstract class UseCaseBinding {
         useCase.addDisposable(disposable);
     }
 
-    abstract void bind();
+    abstract public T bind();
 }

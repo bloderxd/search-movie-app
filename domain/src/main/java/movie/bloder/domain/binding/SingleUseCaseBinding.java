@@ -6,7 +6,7 @@ import io.reactivex.functions.Function;
 import io.reactivex.observers.DisposableSingleObserver;
 import movie.bloder.domain.UseCase;
 
-public class SingleUseCaseBinding<T> extends UseCaseBinding {
+public class SingleUseCaseBinding<T> extends UseCaseBinding<Single<T>> {
 
     private Function<T, ?> onSuccess;
     private Function<Throwable, ?> onError;
@@ -27,7 +27,7 @@ public class SingleUseCaseBinding<T> extends UseCaseBinding {
         return this;
     }
 
-    @Override void bind() {
+    @Override public Single<T> bind() {
         addDisposable(single.subscribeWith(new DisposableSingleObserver<T>() {
             @Override
             public void onSuccess(T t) {
@@ -43,5 +43,6 @@ public class SingleUseCaseBinding<T> extends UseCaseBinding {
                 } catch (Exception ignored) {}
             }
         }));
+        return single;
     }
 }

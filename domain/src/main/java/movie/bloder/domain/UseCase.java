@@ -9,7 +9,7 @@ import movie.bloder.repository.repository.RepositoryFactory;
 
 public class UseCase {
 
-    protected final RepositoryFactory repository = Repository.getProduction();
+    protected RepositoryFactory repository = Repository.getProduction();
     protected Scheduler scheduler = AndroidSchedulers.mainThread();
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
@@ -23,5 +23,9 @@ public class UseCase {
 
     public void provideScheduler(Scheduler scheduler) {
         this.scheduler = scheduler;
+    }
+
+    public void provideRepository(RepositoryFactory repository) {
+        this.repository = repository;
     }
 }
