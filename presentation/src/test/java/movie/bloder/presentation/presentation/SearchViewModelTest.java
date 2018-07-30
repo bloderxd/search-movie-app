@@ -41,13 +41,22 @@ public class SearchViewModelTest {
     }
 
     @Test public void testOnNotFoundSearch() {
-        Single<List<Movie>> mockedSingle = Single.create(emitter -> emitter.onError(new SearchException(SEARCH_EXCEPTION.NOT_FOUND)));
+        mockBackEndWith(Single.create(emitter -> emitter.onError(new SearchException(SEARCH_EXCEPTION.NOT_FOUND))));
+        viewModel.search("");
+        Assert.assertTrue(viewModel.state().getValue() instanceof SearchState.OnNotFound);
+    }
+
+    @Test public void testUnknownErrorOnSearch() {
+        mockBackEndWith(Single.create(emitter -> emitter.onError(new SearchException(SEARCH_EXCEPTION.UNKNOWN_ERROR))));
+        viewModel.search("");
+        Assert.assertTrue(viewModel.state().getValue() instanceof SearchState.OnUnknownError);
+    }
+
+    private void mockBackEndWith(Single<List<Movie>> mockedSingle) {
         RepositoryFactory mockedRepository = Mockito.mock(RepositoryFactory.class);
         SearchRepository mockedSearchRepository = Mockito.mock(SearchRepository.class);
         interactor.provideRepository(mockedRepository);
         Mockito.when(mockedRepository.forSearch()).thenReturn(mockedSearchRepository);
         Mockito.when(mockedSearchRepository.search(Mockito.any())).thenReturn(mockedSingle);
-        viewModel.search("");
-        Assert.assertTrue(viewModel.state().getValue() instanceof SearchState.OnNotFound);
     }
 }
