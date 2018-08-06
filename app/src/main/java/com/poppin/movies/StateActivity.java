@@ -25,6 +25,6 @@ abstract public class StateActivity<T extends State> extends AppCompatActivity {
         });
     }
 
-    abstract void handleState(T state);
-    abstract AppViewModel<T> provideViewModel();
+    protected abstract void handleState(T state);
+    protected abstract AppViewModel<T> provideViewModel();
 }

@@ -1,8 +1,9 @@
-package com.poppin.movies;
+package com.poppin.movies.search;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -13,6 +14,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.poppin.movies.R;
+import com.poppin.movies.StateActivity;
 import com.poppin.movies.animation.Animator;
 
 import java.lang.reflect.Field;
@@ -28,6 +31,8 @@ public class SearchActivity extends StateActivity<SearchState> {
     private Menu searchMenu;
     private MenuItem itemSearch;
     private SearchViewModel searchViewModel;
+    private RecyclerView searchResults;
+    private View searchInfo;
 
     @Override public void onCreate(Bundle savedInstanceState) {
         searchViewModel = ViewModelProviders.of(this).get(SearchViewModel.class);
@@ -46,6 +51,11 @@ public class SearchActivity extends StateActivity<SearchState> {
 
     @Override protected AppViewModel<SearchState> provideViewModel() {
         return searchViewModel;
+    }
+
+    private void setViewSettings() {
+        searchResults = findViewById(R.id.search_result);
+        searchInfo = findViewById(R.id.search_info);
     }
 
     private void onSearched(List<Movie> movies) {

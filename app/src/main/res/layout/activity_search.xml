@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SearchActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".search.SearchActivity">
 
     <RelativeLayout
         android:id="@+id/header"
@@ -20,6 +21,32 @@
         android:id="@+id/search_result"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/header"/>
+        android:layout_below="@+id/header"
+        android:visibility="gone"/>
 
+    <RelativeLayout
+        android:id="@+id/search_info"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/header"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/search_image"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="100dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/search_home" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/search_image"
+            android:layout_centerInParent="true"
+            android:textAlignment="center"
+            android:text="Pesquise agora mesmo seus filmes favoritos!"
+            android:textSize="30sp" />
+
+    </RelativeLayout>
 </RelativeLayout>
