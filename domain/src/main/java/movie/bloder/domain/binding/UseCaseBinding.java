@@ -11,7 +11,7 @@ abstract class UseCaseBinding<T> {
         this.useCase = useCase;
     }
 
-    void addDisposable(Disposable disposable) {
+    protected void addDisposable(Disposable disposable) {
         useCase.addDisposable(disposable);
     }
 
