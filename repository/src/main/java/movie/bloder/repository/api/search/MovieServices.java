@@ -8,5 +8,5 @@ import retrofit2.http.Query;
 
 public interface MovieServices {
 
-    @GET Single<Response<MovieSearchResponsePayload>> search(@Query("s") String search, @Query("apikey") String apiKey);
+    @GET(".") Single<Response<MovieSearchResponsePayload>> search(@Query("s") String search, @Query("apikey") String apiKey);
 }

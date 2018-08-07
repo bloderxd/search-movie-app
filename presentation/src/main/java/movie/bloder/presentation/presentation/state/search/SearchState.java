@@ -18,4 +18,5 @@ public class SearchState implements State {
 
     public static class OnNotFound extends SearchState {}
     public static class OnUnknownError extends SearchState {}
+    public static class OnActivityCreated extends SearchState {}
 }

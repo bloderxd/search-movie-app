@@ -20,9 +20,9 @@ public class SearchResponseGod implements ResponseGod {
     }
 
     @Override public Function<Void, Void> on200() {
-        if (response.body() == null) {
+        if (response.body() == null || !response.body().hasResults()) {
             emmiter.onError(new SearchException(SEARCH_EXCEPTION.NOT_FOUND));
-            return null;
+            return {x -> x};
         }
         emmiter.onSuccess(response.body().toModel());
         return null;

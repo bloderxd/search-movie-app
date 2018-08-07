@@ -18,7 +18,7 @@ abstract public class Api<T> {
                 .addConverterFactory(GsonConverterFactory.create(new GsonBuilder().serializeNulls().create()))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(createClientBuilder())
-                .baseUrl("")
+                .baseUrl("http://www.omdbapi.com/")
                 .build();
     }
 

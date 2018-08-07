@@ -4,6 +4,8 @@ package movie.bloder.repository.repository.production.search;
 import java.util.List;
 
 import io.reactivex.Single;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import movie.bloder.repository.BuildConfig;
 import movie.bloder.repository.api.search.SearchApi;
 import movie.bloder.repository.models.Movie;
@@ -15,6 +17,8 @@ public class SearchProductionRepository implements SearchRepository {
     @Override public Single<List<Movie>> search(String search) {
         return new SearchApi().getService()
                 .search(search, BuildConfig.API_KEY)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.newThread())
                 .flatMap(response -> Single.create(emitter -> new SearchResponseGod(emitter, response).handle(response.code())));
     }
 }

@@ -3,6 +3,7 @@ package com.poppin.movies.search;
 import android.arch.lifecycle.ViewModelProviders;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
@@ -33,6 +34,7 @@ public class SearchActivity extends StateActivity<SearchState> {
     private SearchViewModel searchViewModel;
     private RecyclerView searchResults;
     private View searchInfo;
+    private TextView searchInfoText;
 
     @Override public void onCreate(Bundle savedInstanceState) {
         searchViewModel = ViewModelProviders.of(this).get(SearchViewModel.class);
@@ -40,6 +42,7 @@ public class SearchActivity extends StateActivity<SearchState> {
         setContentView(R.layout.activity_search);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        setViewSettings();
         setSearchtollbar();
     }
 
@@ -56,18 +59,28 @@ public class SearchActivity extends StateActivity<SearchState> {
     private void setViewSettings() {
         searchResults = findViewById(R.id.search_result);
         searchInfo = findViewById(R.id.search_info);
+        searchInfoText = findViewById(R.id.search_info_text);
     }
 
     private void onSearched(List<Movie> movies) {
-
+        searchInfo.setVisibility(View.GONE);
+        searchResults.setVisibility(View.VISIBLE);
+        searchResults.setLayoutManager(new LinearLayoutManager(this));
+        searchResults.setAdapter(new SearchAdapter(this, movies));
     }
 
     private void onSearchNotFound() {
-
+        showErrorWithMessage(getString(R.string.movie_not_found));
     }
 
     private void onUnknownProblem() {
+        showErrorWithMessage(getString(R.string.unknown_error));
+    }
 
+    private void showErrorWithMessage(String message) {
+        searchResults.setVisibility(View.GONE);
+        searchInfo.setVisibility(View.VISIBLE);
+        searchInfoText.setText(message);
     }
 
     @Override public boolean onCreateOptionsMenu(final Menu menu) {

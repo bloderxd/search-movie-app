@@ -1,6 +1,5 @@
 package com.poppin.movies;
 
-import android.arch.lifecycle.Observer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -17,12 +16,7 @@ abstract public class StateActivity<T extends State> extends AppCompatActivity {
     }
 
     private void observeViewModel() {
-        provideViewModel().state().observe(this, new Observer<T>() {
-            @Override
-            public void onChanged(@Nullable T state) {
-                handleState(state);
-            }
-        });
+        provideViewModel().state().observe(this, this::handleState);
     }
 
     protected abstract void handleState(T state);
